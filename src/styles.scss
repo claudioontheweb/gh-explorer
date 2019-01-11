@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import "app/dark-theme.scss";
+
+
+@include mat-core();
+@include angular-material-theme($dark-theme);
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background: mat-color($mat-blue-gray, 700);
+  color: white;
+}
+
+.fill-space {
+  flex: 1 1 auto;
+}
+
+.main-container {
+  margin: 30px;
+}
