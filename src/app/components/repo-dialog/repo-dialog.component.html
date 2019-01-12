@@ -2,6 +2,24 @@
 <h2>by {{repository.author}}</h2>
 
 <br/>
+<br/>
+
+<div class="stats-container">
+
+  <div class="stats-item">
+    <mat-icon color="accent" matTooltip="Stars" matTooltipPosition="above">star</mat-icon>
+    {{repository.stars}}
+  </div>
+
+  <div class="stats-item">
+    <mat-icon color="accent" matTooltip="Forks" matTooltipPosition="above">call_split</mat-icon>
+    {{repository.forks}}
+  </div>
+
+</div>
+
+<br/>
+<br/>
 
 <mat-divider></mat-divider>
 
@@ -11,14 +29,6 @@
 <br/>
 <p>{{repository.description}}</p>
 
-<br/>
-
-<mat-divider></mat-divider>
-
-<br/>
-
-<p>Forks: {{repository.forks}}</p>
-<p>Stars: {{repository.stars}}</p>
 
 <br/>
 

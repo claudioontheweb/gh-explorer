@@ -25,6 +25,7 @@
     "@angular/router": "~7.0.0",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
+    "ng-http-loader": "^5.0.0",
     "ngx-perfect-scrollbar": "^7.2.0",
     "ngx-scrollbar": "^4.1.1",
     "rxjs": "~6.3.3",

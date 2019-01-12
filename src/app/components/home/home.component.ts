@@ -22,6 +22,11 @@ export class HomeComponent implements OnInit {
 
   constructor(private _dataService: DataService,
               private repoDialog: MatDialog) {
+
+    this.popularRepos = [];
+    this.popularLanguages = [];
+    this.topJavascriptRepos = [];
+
   }
 
   ngOnInit() {

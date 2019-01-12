@@ -9,13 +9,12 @@
   <br/>
 
   <!-- Top Repos -->
-  <h2>Trending Repositories</h2>
 
-  <div class="loading-div" *ngIf="topReposLoading">
-    <mat-spinner color="warn"></mat-spinner>
-  </div>
+  <h2 *ngIf="!topReposLoading">Trending Repositories</h2>
 
   <div class="repo-container" *ngIf="!topReposLoading">
+
+
     <div *ngFor="let topRepo of popularRepos">
       <mat-card class="repo-item">
         <button
@@ -32,7 +31,7 @@
           (click)="openRepo(topRepo)"
         >
           <mat-card-title>{{topRepo.name}}</mat-card-title>
-          <mat-card-subtitle>{{topRepo.author}}</mat-card-subtitle>
+          <mat-card-subtitle>by {{topRepo.author}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
 
@@ -47,13 +46,9 @@
   <div class="margin"></div>
 
   <!-- Top JS Repos -->
-  <h2>Trending JavaScript Repositories</h2>
-
-  <div class="loading-div" *ngIf="topJavaScriptLoading">
-    <mat-spinner color="warn"></mat-spinner>
-  </div>
-
+  <h2 *ngIf="!topJavaScriptLoading">Trending JavaScript Repositories</h2>
   <div class="repo-container" *ngIf="!topJavaScriptLoading">
+
     <div *ngFor="let topJavascriptRepo of topJavascriptRepos">
       <mat-card class="repo-item">
         <button
@@ -87,18 +82,17 @@
   <div class="margin"></div>
 
   <!-- Top Lanugages -->
-  <h2>Popular Languages</h2>
+  <h2 *ngIf="!topLangLoading">Popular Languages</h2>
 
-  <div class="loading-div" *ngIf="topLangLoading">
-    <mat-spinner color="warn"></mat-spinner>
+  <div *ngIf="!topLangLoading">
+
+    <br/>
+
+    <mat-chip-list>
+      <mat-chip *ngFor="let popularLanguage of popularLanguages">
+        <mat-chip>{{popularLanguage.name}}</mat-chip>
+      </mat-chip>
+    </mat-chip-list>
   </div>
-
-  <br/>
-
-  <mat-chip-list>
-    <mat-chip *ngFor="let popularLanguage of popularLanguages">
-      <mat-chip>{{popularLanguage.name}}</mat-chip>
-    </mat-chip>
-  </mat-chip-list>
 
 </div>

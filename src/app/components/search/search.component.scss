@@ -1,0 +1,30 @@
+@import "../../../styles";
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 50vw;
+}
+
+.result-container {
+  width: 80vw;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (width: 800px) {
+
+  .result-container {
+    width: 100vw;
+  }
+}
+
+.result-item {
+  width: 30vh;
+  margin: 30px;
+
+  height: 150px;
+}
