@@ -30,3 +30,27 @@ body {
   overflow-y: visible;
   overflow-x: hidden;
 }
+
+mat-icon {
+  font-family: 'Material Icons' !important;
+}
+
+.pull-right {
+  float: right;
+}
+
+.primary {
+  color: #263238;
+}
+
+.accent {
+  color: #ff9800;
+}
+
+.warn {
+  color: #ff5722;
+}
+
+.text-center {
+  text-align: center !important;
+}

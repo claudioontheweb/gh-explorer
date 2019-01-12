@@ -13,6 +13,8 @@ import {NgScrollbarModule} from 'ngx-scrollbar';
 import {HttpClientModule} from '@angular/common/http';
 import {DataService} from './services/data.service';
 import { RepoDialogComponent } from './components/repo-dialog/repo-dialog.component';
+import { SearchComponent } from './components/search/search.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { RepoDialogComponent } from './components/repo-dialog/repo-dialog.compon
     FooterComponent,
     HomeComponent,
     NotFoundComponent,
-    RepoDialogComponent
+    RepoDialogComponent,
+    SearchComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

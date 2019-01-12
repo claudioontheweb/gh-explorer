@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../services/data.service';
-import {removeSummaryDuplicates} from '@angular/compiler';
 import {Language} from '../../models/language';
 import {Repository} from '../../models/repository';
 import {MatDialog} from '@angular/material';
@@ -30,21 +29,33 @@ export class HomeComponent implements OnInit {
   }
 
   getData() {
+
+    this.loadTrendingRepos();
+    this.loadJSRepos();
+    this.loadTrendingLanguages();
+
+  }
+
+  loadTrendingLanguages() {
     this._dataService.getTrendingLanguages().subscribe(result => {
       this.popularLanguages = result.popular;
       this.topJavaScriptLoading = false;
     });
 
+  }
+
+  loadJSRepos() {
     this._dataService.getSpecificTrendigRepos('javascript', 'weekly').subscribe(result => {
       this.topJavascriptRepos = result;
       this.topLangLoading = false;
     });
+  }
 
+  loadTrendingRepos() {
     this._dataService.getTrendingRepos().subscribe(result => {
       this.popularRepos = result;
       this.topReposLoading = false;
     });
-
   }
 
   openRepo(repo: Repository) {

@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatChipsModule,
   MatDialogModule,
   MatDividerModule,
   MatIconModule,
-  MatListModule,
-  MatToolbarModule
+  MatListModule, MatMenuModule,
+  MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
@@ -22,7 +22,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule,
+    MatChipsModule,
+    MatMenuModule
   ],
   exports: [
     MatToolbarModule,
@@ -32,7 +35,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule,
+    MatChipsModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule { }

@@ -1,6 +1,6 @@
 <div class="main-container">
 
-  <h1>Welcome to the GH - Explorer!</h1>
+  <h1>Welcome to the <span class="accent">GitHub - Explorer! <mat-icon>search</mat-icon></span></h1>
 
   <br/>
 
@@ -17,8 +17,20 @@
 
   <div class="repo-container" *ngIf="!topReposLoading">
     <div *ngFor="let topRepo of popularRepos">
-      <mat-card class="repo-item" (click)="openRepo(topRepo)">
-        <mat-card-header>
+      <mat-card class="repo-item">
+        <button
+          matTooltip="Star this repository!"
+          matTooltipPosition="above"
+          color="accent" mat-icon-button class="pull-right">
+          <mat-icon>star_outline</mat-icon>
+          <!--<mat-icon>star</mat-icon>-->
+        </button>
+        <mat-card-header
+          matTooltip="Click to open details!"
+          matTooltipPosition="above"
+          class="repo-item-header"
+          (click)="openRepo(topRepo)"
+        >
           <mat-card-title>{{topRepo.name}}</mat-card-title>
           <mat-card-subtitle>{{topRepo.author}}</mat-card-subtitle>
         </mat-card-header>
@@ -43,8 +55,20 @@
 
   <div class="repo-container" *ngIf="!topJavaScriptLoading">
     <div *ngFor="let topJavascriptRepo of topJavascriptRepos">
-      <mat-card class="repo-item" (click)="openRepo(topJavascriptRepo)">
-        <mat-card-header>
+      <mat-card class="repo-item">
+        <button
+          matTooltip="Star this repository!"
+          matTooltipPosition="above"
+          color="accent" mat-icon-button class="pull-right">
+          <mat-icon>star_outline</mat-icon>
+          <!--<mat-icon>star</mat-icon>-->
+        </button>
+        <mat-card-header
+          matTooltip="Click to open details!"
+          matTooltipPosition="above"
+          class="repo-item-header"
+          (click)="openRepo(topJavascriptRepo)"
+        >
           <mat-card-title>{{topJavascriptRepo.name}}</mat-card-title>
           <mat-card-subtitle>by {{topJavascriptRepo.author}}</mat-card-subtitle>
         </mat-card-header>
@@ -69,15 +93,12 @@
     <mat-spinner color="warn"></mat-spinner>
   </div>
 
-  <div class="repo-container" *ngIf="!topLangLoading">
-    <div *ngFor="let popularLanguage of popularLanguages">
-      <mat-card class="repo-item">
-        <mat-card-header>
-          <mat-card-title>{{popularLanguage.name}}</mat-card-title>
-        </mat-card-header>
-      </mat-card>
-    </div>
-  </div>
+  <br/>
 
+  <mat-chip-list>
+    <mat-chip *ngFor="let popularLanguage of popularLanguages">
+      <mat-chip>{{popularLanguage.name}}</mat-chip>
+    </mat-chip>
+  </mat-chip-list>
 
 </div>
