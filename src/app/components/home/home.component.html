@@ -2,8 +2,82 @@
 
   <h1>Welcome to the GH - Explorer!</h1>
 
-  <br />
+  <br/>
 
   <mat-divider></mat-divider>
+
+  <br/>
+
+  <!-- Top Repos -->
+  <h2>Trending Repositories</h2>
+
+  <div class="loading-div" *ngIf="topReposLoading">
+    <mat-spinner color="warn"></mat-spinner>
+  </div>
+
+  <div class="repo-container" *ngIf="!topReposLoading">
+    <div *ngFor="let topRepo of popularRepos">
+      <mat-card class="repo-item" (click)="openRepo(topRepo)">
+        <mat-card-header>
+          <mat-card-title>{{topRepo.name}}</mat-card-title>
+          <mat-card-subtitle>{{topRepo.author}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+
+          {{ (topRepo.description.length > 100) ? (topRepo.description |
+          slice:0:100) + '...' : (topRepo.description) }}
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="margin"></div>
+
+  <!-- Top JS Repos -->
+  <h2>Trending JavaScript Repositories</h2>
+
+  <div class="loading-div" *ngIf="topJavaScriptLoading">
+    <mat-spinner color="warn"></mat-spinner>
+  </div>
+
+  <div class="repo-container" *ngIf="!topJavaScriptLoading">
+    <div *ngFor="let topJavascriptRepo of topJavascriptRepos">
+      <mat-card class="repo-item" (click)="openRepo(topJavascriptRepo)">
+        <mat-card-header>
+          <mat-card-title>{{topJavascriptRepo.name}}</mat-card-title>
+          <mat-card-subtitle>by {{topJavascriptRepo.author}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="repo-content">
+
+
+          {{ (topJavascriptRepo.description.length > 100) ? (topJavascriptRepo.description |
+          slice:0:100) + '...' : (topJavascriptRepo.description) }}
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+
+  <div class="margin"></div>
+
+  <!-- Top Lanugages -->
+  <h2>Popular Languages</h2>
+
+  <div class="loading-div" *ngIf="topLangLoading">
+    <mat-spinner color="warn"></mat-spinner>
+  </div>
+
+  <div class="repo-container" *ngIf="!topLangLoading">
+    <div *ngFor="let popularLanguage of popularLanguages">
+      <mat-card class="repo-item">
+        <mat-card-header>
+          <mat-card-title>{{popularLanguage.name}}</mat-card-title>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+
 
 </div>

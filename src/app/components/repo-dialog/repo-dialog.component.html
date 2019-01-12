@@ -1,0 +1,32 @@
+<h1>{{repository.name}}</h1>
+<h2>by {{repository.author}}</h2>
+
+<br/>
+
+<mat-divider></mat-divider>
+
+<br/>
+
+<h2>Description:</h2>
+<br/>
+<p>{{repository.description}}</p>
+
+<br/>
+
+<mat-divider></mat-divider>
+
+<br/>
+
+<p>Forks: {{repository.forks}}</p>
+<p>Stars: {{repository.stars}}</p>
+
+<br/>
+
+<mat-divider></mat-divider>
+
+<br/>
+
+<a [href]="repository.url" target="_blank">
+  <button mat-flat-button color="accent">Open Repo</button>
+</a>
+<button mat-flat-button (click)="close()">Close</button>

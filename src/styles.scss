@@ -9,11 +9,15 @@
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+  text-decoration: none;
 }
 
 body {
-  background: mat-color($mat-blue-gray, 700);
+  background: #303030;
   color: white;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100%;
 }
 
 .fill-space {
@@ -22,4 +26,7 @@ body {
 
 .main-container {
   margin: 30px;
+  height: 80vh;
+  overflow-y: visible;
+  overflow-x: hidden;
 }

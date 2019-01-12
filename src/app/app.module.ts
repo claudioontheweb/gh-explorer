@@ -9,6 +9,10 @@ import { HomeComponent } from './components/home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './modules/material/material.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import {NgScrollbarModule} from 'ngx-scrollbar';
+import {HttpClientModule} from '@angular/common/http';
+import {DataService} from './services/data.service';
+import { RepoDialogComponent } from './components/repo-dialog/repo-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,15 +20,23 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    RepoDialogComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    NgScrollbarModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    DataService
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    RepoDialogComponent
+  ]
 })
 export class AppModule { }

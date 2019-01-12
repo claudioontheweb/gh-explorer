@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DataService} from '../../services/data.service';
+import {removeSummaryDuplicates} from '@angular/compiler';
+import {Language} from '../../models/language';
+import {Repository} from '../../models/repository';
+import {MatDialog} from '@angular/material';
+import {RepoDialogComponent} from '../repo-dialog/repo-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +13,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  popularLanguages: Language[];
+  topJavascriptRepos: Repository[];
+  popularRepos: Repository[];
 
-  ngOnInit() {
+  topJavaScriptLoading = true;
+  topReposLoading = true;
+  topLangLoading = true;
+
+  constructor(private _dataService: DataService,
+              private repoDialog: MatDialog) {
   }
 
+  ngOnInit() {
+    this.getData();
+  }
+
+  getData() {
+    this._dataService.getTrendingLanguages().subscribe(result => {
+      this.popularLanguages = result.popular;
+      this.topJavaScriptLoading = false;
+    });
+
+    this._dataService.getSpecificTrendigRepos('javascript', 'weekly').subscribe(result => {
+      this.topJavascriptRepos = result;
+      this.topLangLoading = false;
+    });
+
+    this._dataService.getTrendingRepos().subscribe(result => {
+      this.popularRepos = result;
+      this.topReposLoading = false;
+    });
+
+  }
+
+  openRepo(repo: Repository) {
+
+    const dialogRef = this.repoDialog.open(RepoDialogComponent, {
+      width: '90vw',
+      height: '90%',
+      data: repo
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 }
