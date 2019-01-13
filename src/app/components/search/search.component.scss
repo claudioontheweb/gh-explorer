@@ -15,7 +15,17 @@
   flex-wrap: wrap;
 }
 
-@media screen and (width: 800px) {
+@media all and (max-width: 800px) {
+
+  .example-container {
+    width: 100vw;
+
+
+    .search-form-element {
+      width: 100vw;
+    }
+
+  }
 
   .result-container {
     width: 100vw;
@@ -25,6 +35,10 @@
 .result-item {
   width: 30vh;
   margin: 30px;
-
+  padding: 20px;
   height: 150px;
+}
+
+.result-item-header:hover {
+  cursor: pointer;
 }

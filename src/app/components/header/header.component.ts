@@ -1,4 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
+import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-header',
@@ -8,22 +9,20 @@ import {Component, HostListener, OnInit} from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   mobile = false;
-  innerWidth;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.innerWidth = window.innerWidth;
-
-    if (this.innerWidth <= 800) {
-      this.mobile = true;
-    }
-
-  }
-
-  constructor() {
+  constructor(public breakpointObserver: BreakpointObserver) {
   }
 
   ngOnInit() {
+    this.breakpointObserver
+      .observe(['(min-width: 500px)'])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          console.log('Viewport is 500px or over!');
+        } else {
+          this.mobile = true;
+        }
+      });
   }
 
   login() {

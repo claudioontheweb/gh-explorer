@@ -10,11 +10,11 @@
 
 
   <div class="example-container">
-    <mat-form-field color="accent">
+    <mat-form-field class="search-form-element" color="accent">
       <input disabled matInput placeholder="Input">
     </mat-form-field>
 
-    <mat-form-field color="accent">
+    <mat-form-field class="search-form-element" color="accent">
       <mat-select placeholder="Time" [(value)]="searchTime">
         <mat-option value="daily">Daily</mat-option>
         <mat-option value="weekly">Weekly</mat-option>
@@ -22,7 +22,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field color="accent">
+    <mat-form-field class="search-form-element" color="accent">
       <mat-select placeholder="Language" [(value)]="searchLanguage">
         <mat-option *ngFor="let language of languages" [value]="language.name">{{language.name}}</mat-option>
       </mat-select>
@@ -49,6 +49,7 @@
         <!--<mat-icon>star</mat-icon>-->
       </button>
       <mat-card-header
+        class="result-item-header"
         matTooltip="Click to open details!"
         matTooltipPosition="above"
         (click)="openRepo(repository)"
