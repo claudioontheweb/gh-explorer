@@ -37,6 +37,10 @@ export class DataService {
       );
   }
 
+  // ToDo: Star Repository Request
+  starRepository(repo: string, owner: string): Observable<any> {
+    return this.http.put('', '').pipe();
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

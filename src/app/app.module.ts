@@ -17,6 +17,13 @@ import {SearchComponent} from './components/search/search.component';
 import {AboutComponent} from './components/about/about.component';
 import {NgHttpLoaderModule} from 'ng-http-loader';
 import {LayoutModule} from '@angular/cdk/layout';
+import {OAuthModule} from 'angular-oauth2-oidc';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,8 @@ import {LayoutModule} from '@angular/cdk/layout';
     NotFoundComponent,
     RepoDialogComponent,
     SearchComponent,
-    AboutComponent
+    AboutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -37,14 +45,20 @@ import {LayoutModule} from '@angular/cdk/layout';
     MaterialModule,
     NgScrollbarModule,
     NgHttpLoaderModule.forRoot(),
-    LayoutModule
+    LayoutModule,
+    OAuthModule.forRoot(),
+    AngularFireModule.initializeApp(environment.config),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule
   ],
   providers: [
     DataService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    RepoDialogComponent
+    RepoDialogComponent,
+    LoginComponent
   ]
 })
 export class AppModule {

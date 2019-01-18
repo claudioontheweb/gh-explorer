@@ -1,0 +1,19 @@
+.google-login-form {
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+.login-form {
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+.example-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 50vw;
+}

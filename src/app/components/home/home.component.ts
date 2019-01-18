@@ -4,6 +4,7 @@ import {Language} from '../../models/language';
 import {Repository} from '../../models/repository';
 import {MatDialog} from '@angular/material';
 import {RepoDialogComponent} from '../repo-dialog/repo-dialog.component';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-home',
@@ -20,13 +21,14 @@ export class HomeComponent implements OnInit {
   topReposLoading = true;
   topLangLoading = true;
 
+  name: string;
+
   constructor(private _dataService: DataService,
               private repoDialog: MatDialog) {
 
     this.popularRepos = [];
     this.popularLanguages = [];
     this.topJavascriptRepos = [];
-
   }
 
   ngOnInit() {

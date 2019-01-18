@@ -12,7 +12,6 @@ const routes: Routes = [
   {path: 'search', component: SearchComponent},
   {path: 'about', component: AboutComponent},
   {path: '**', component: NotFoundComponent}
-
 ];
 
 @NgModule({

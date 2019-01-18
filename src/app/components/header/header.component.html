@@ -13,8 +13,13 @@
     <mat-list-item routerLink="about" routerLinkActive="active">
       About
     </mat-list-item>
-    <mat-list-item routerLink="login" routerLinkActive="active">
-      Login
+    <mat-list-item>
+      <div *ngIf="afAuth.user | async as user; else showLogin" (click)="logout()">
+        Logout
+      </div>
+      <ng-template #showLogin>
+        <span (click)="openLoginDialog()">Login</span>
+      </ng-template>
     </mat-list-item>
   </mat-nav-list>
 
@@ -28,7 +33,13 @@
       <button routerLink="home" mat-menu-item>Home</button>
       <button routerLink="search" mat-menu-item>Search</button>
       <button routerLink="about" mat-menu-item>About</button>
-      <button routerLink="login" mat-menu-item>Login</button>
+      <div mat-menu-item *ngIf="afAuth.user | async as user; else showLogin" (click)="logout()">
+        Logout
+      </div>
+      <ng-template #showLogin>
+        <button mat-menu-item (click)="openLoginDialog()">Login</button>
+      </ng-template>
+
     </mat-menu>
 
   </div>
