@@ -13,13 +13,16 @@
     <mat-list-item routerLink="about" routerLinkActive="active">
       About
     </mat-list-item>
+    <mat-list-item *ngIf="afAuth.user | async as user" routerLink="repos" routerLinkActive="active">
+      My Repos
+    </mat-list-item>
     <mat-list-item>
-      <div *ngIf="afAuth.user | async as user; else showLogin" (click)="logout()">
+      <div *ngIf="afAuth.user | async as user" (click)="logout()">
         Logout
       </div>
-      <ng-template #showLogin>
-        <span (click)="openLoginDialog()">Login</span>
-      </ng-template>
+      <mat-list-item (click)="openLoginDialog()" *ngIf="!loggedIn">
+        Login
+      </mat-list-item>
     </mat-list-item>
   </mat-nav-list>
 

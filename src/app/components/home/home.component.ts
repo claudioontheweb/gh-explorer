@@ -4,7 +4,8 @@ import {Language} from '../../models/language';
 import {Repository} from '../../models/repository';
 import {MatDialog} from '@angular/material';
 import {RepoDialogComponent} from '../repo-dialog/repo-dialog.component';
-import {AngularFireAuth} from '@angular/fire/auth';
+import {User} from '../../models/user';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-home',
@@ -23,8 +24,19 @@ export class HomeComponent implements OnInit {
 
   name: string;
 
+  user_id;
+  userCollection;
+  user: User;
+
+  username;
+
   constructor(private _dataService: DataService,
-              private repoDialog: MatDialog) {
+              private repoDialog: MatDialog,
+              private aF: AngularFirestore) {
+
+    this.user_id = localStorage.getItem('gh_user_id');
+
+    this.userCollection = aF.collection('users').doc(this.user_id);
 
     this.popularRepos = [];
     this.popularLanguages = [];
@@ -40,6 +52,7 @@ export class HomeComponent implements OnInit {
     this.loadTrendingRepos();
     this.loadJSRepos();
     this.loadTrendingLanguages();
+    this.loadUser();
 
   }
 
@@ -65,8 +78,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  openRepo(repo: Repository) {
+  starRepository(repo: Repository) {
+    this._dataService.starRepository(repo);
 
+  }
+
+  openRepo(repo: Repository) {
     const dialogRef = this.repoDialog.open(RepoDialogComponent, {
       width: '90vw',
       height: '90%',
@@ -75,6 +92,18 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+    });
+  }
+
+  loadUser() {
+    this.userCollection.get().then(result => {
+      if (result.exists) {
+        console.log('Document data:', result.data());
+      } else {
+        console.log('No such document!');
+      }
+    }).catch(function (error) {
+      console.log('Error getting document:', error);
     });
   }
 }
