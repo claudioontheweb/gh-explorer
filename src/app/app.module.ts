@@ -24,8 +24,6 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { LoginComponent } from './components/login/login.component';
-import {FormsModule} from '@angular/forms';
-import { ReposComponent } from './components/repos/repos.component';
 
 @NgModule({
   declarations: [
@@ -37,8 +35,7 @@ import { ReposComponent } from './components/repos/repos.component';
     RepoDialogComponent,
     SearchComponent,
     AboutComponent,
-    LoginComponent,
-    ReposComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -53,8 +50,7 @@ import { ReposComponent } from './components/repos/repos.component';
     AngularFireModule.initializeApp(environment.config),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireStorageModule,
-    FormsModule
+    AngularFireStorageModule
   ],
   providers: [
     DataService

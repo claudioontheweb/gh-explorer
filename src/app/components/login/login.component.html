@@ -14,7 +14,7 @@
 
       <br/>
 
-      <button mat-flat-button color="accent" (click)="loginWithGoogle()">Click here</button>
+      <button mat-flat-button color="accent" (click)="loginWithGoogle()">Login</button>
 
       <br/>
       <br/>
@@ -33,20 +33,22 @@
 
       <div class="example-container">
         <mat-form-field class="search-form-element" color="accent">
-          <input disabled  [(ngModel)]="username" matInput placeholder="Username" required>
+          <input matInput placeholder="First Name" required>
         </mat-form-field>
 
         <mat-form-field class="search-form-element" color="accent">
-          <input disabled [(ngModel)]="email" matInput placeholder="E-Mail" required>
+          <input matInput placeholder="Last Name" required>
         </mat-form-field>
 
         <mat-form-field class="search-form-element" color="accent">
-          <input disabled [(ngModel)]="password" matInput type="password" placeholder="Password" required>
+          <input matInput placeholder="E-Mail" required>
         </mat-form-field>
 
         <br />
 
-        <button disabled class="register-btn" mat-flat-button color="accent" (click)="signUp()">Register</button>
+        <button class="register-btn" mat-flat-button color="accent">Register</button>
+
+        <p>Already have an account?</p>
 
       </div>
 

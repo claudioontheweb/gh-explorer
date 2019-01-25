@@ -1,7 +1,6 @@
 <div class="main-container">
 
-  <h1 *ngIf="!user_id">Welcome to the <span class="accent">GitHub - Explorer! <mat-icon>search</mat-icon></span></h1>
-  <h1 *ngIf="user_id">Welcome, <span class="accent">{{username}}</span></h1>
+  <h1>Welcome to the <span class="accent">GitHub - Explorer! <mat-icon>search</mat-icon></span></h1>
 
   <br/>
 
@@ -20,7 +19,7 @@
         <button
           matTooltip="Star this repository!"
           matTooltipPosition="above"
-          color="accent" mat-icon-button class="pull-right" (click)="starRepository(topRepo)">
+          color="accent" mat-icon-button class="pull-right">
           <mat-icon>star_outline</mat-icon>
           <!--<mat-icon>star</mat-icon>-->
         </button>

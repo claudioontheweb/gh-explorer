@@ -4,8 +4,6 @@ import {catchError} from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
 import {Language} from '../models/language';
 import {Repository} from '../models/repository';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import {User} from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +13,7 @@ export class DataService {
   repoBaseUrl = 'https://github-trending-api.now.sh/repositories';
   languagesUrl = 'https://github-trending-api.now.sh/languages';
 
-  private usersCollection: AngularFirestoreCollection<User>;
-
-  constructor(private http: HttpClient,
-              private aF: AngularFirestore) {
-    this.usersCollection = aF.collection<User>('users');
+  constructor(private http: HttpClient) {
   }
 
   getTrendingRepos(): Observable<Repository[]> {
@@ -44,22 +38,8 @@ export class DataService {
   }
 
   // ToDo: Star Repository Request
-  starRepository(repo: Repository) {
-
-    const user_id = localStorage.getItem('gh_user_id');
-
-    this.usersCollection.doc(user_id).update({
-      repos: repo
-    }).then(resp => {
-
-      console.log(resp);
-
-    }).catch(err => {
-
-      console.log(err);
-
-    });
-
+  starRepository(repo: string, owner: string): Observable<any> {
+    return this.http.put('', '').pipe();
   }
 
   private handleError(error: HttpErrorResponse) {

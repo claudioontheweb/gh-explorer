@@ -15,19 +15,11 @@ export class HeaderComponent implements OnInit {
 
   mobile = false;
 
-  loggedIn = false;
-
   constructor(public afAuth: AngularFireAuth,
               public breakpointObserver: BreakpointObserver,
               private snackBar: MatSnackBar,
               private loginDialog: MatDialog
             ) {
-
-    if (localStorage.getItem('gh_user_id') != null) {
-      this.loggedIn = true;
-    } else {
-      this.loggedIn = false;
-    }
   }
 
   ngOnInit() {
@@ -56,7 +48,6 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.afAuth.auth.signOut().then(result => {
       this.openSnackBar('Successfully logged out!');
-      localStorage.removeItem('gh_user_id');
     }).catch(error => {
       this.openSnackBar(error);
     });
