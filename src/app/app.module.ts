@@ -24,6 +24,8 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { LoginComponent } from './components/login/login.component';
+import { MyReposComponent } from './components/my-repos/my-repos.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { LoginComponent } from './components/login/login.component';
     RepoDialogComponent,
     SearchComponent,
     AboutComponent,
-    LoginComponent
+    LoginComponent,
+    MyReposComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

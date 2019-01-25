@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {MatDialog, MatSnackBar} from '@angular/material';
-import {Repository} from '../../models/repository';
-import {RepoDialogComponent} from '../repo-dialog/repo-dialog.component';
 import {LoginComponent} from '../login/login.component';
 
 @Component({
@@ -45,13 +43,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  logout() {
-    this.afAuth.auth.signOut().then(result => {
-      this.openSnackBar('Successfully logged out!');
-    }).catch(error => {
-      this.openSnackBar(error);
-    });
-  }
+
 
   openSnackBar(message: string) {
     this.snackBar.open(message, null, {

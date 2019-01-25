@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
 
       this.newUser = result.additionalUserInfo.profile;
 
+      localStorage.setItem('gh_user_id', this.newUser.id);
       // Store user in database
       this.usersCollection.doc(this.newUser.id).set({
         given_name: this.newUser.given_name,

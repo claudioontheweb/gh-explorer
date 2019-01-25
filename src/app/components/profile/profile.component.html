@@ -1,0 +1,37 @@
+<div class="main-container">
+
+  <h1>My <span class="accent">Profile</span></h1>
+  <br />
+  <button class="logout-btn" mat-icon-button matTooltip="Logout">
+  <mat-icon>logout</mat-icon>
+  </button>
+  <br />
+  <mat-divider></mat-divider>
+  <br />
+
+  <h2>Starred repositories:</h2>
+  <br />
+
+  <div class="repo-container">
+  <div *ngFor="let repo of starredRepos">
+        <mat-card class="repo-item">
+          <mat-card-header
+            matTooltip="Click to open details!"
+            matTooltipPosition="above"
+            class="repo-item-header"
+            (click)="openRepo(repo)">
+            <mat-card-title>{{repo.name}}</mat-card-title>
+            <mat-card-subtitle>by {{repo.author}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+
+            {{ (repo.description.length > 100) ? (repo.description |
+            slice:0:100) + '...' : (repo.description) }}
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+      </div>
+
+
+</div>

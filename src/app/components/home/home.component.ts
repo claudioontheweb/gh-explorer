@@ -77,4 +77,8 @@ export class HomeComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
+
+  starRepo(repo: Repository) {
+    this._dataService.starRepository(repo);
+  }
 }

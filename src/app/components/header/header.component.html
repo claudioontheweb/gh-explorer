@@ -14,8 +14,8 @@
       About
     </mat-list-item>
     <mat-list-item>
-      <div *ngIf="afAuth.user | async as user; else showLogin" (click)="logout()">
-        Logout
+      <div *ngIf="afAuth.user | async as user; else showLogin" routerLink="/profile">
+        Profile
       </div>
       <ng-template #showLogin>
         <span (click)="openLoginDialog()">Login</span>
