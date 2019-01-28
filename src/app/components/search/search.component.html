@@ -41,7 +41,8 @@
         <button
           matTooltip="Star this repository!"
           matTooltipPosition="above"
-          color="accent" mat-icon-button class="pull-right">
+          color="accent" mat-icon-button class="pull-right"
+          (click)="starRepo(repository)">
           <mat-icon>star_outline</mat-icon>
           <!--<mat-icon>star</mat-icon>-->
         </button>
@@ -68,6 +69,9 @@
     <div *ngIf="repositories.length == 0">
 
       No repositories found...
+      <br/>
+      <br/>
+      Find repositories by applying search criteria above.
 
     </div>
 

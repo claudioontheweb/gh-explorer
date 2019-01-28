@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../services/data.service';
 import {Language} from '../../models/language';
 import {Repository} from '../../models/repository';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {RepoDialogComponent} from '../repo-dialog/repo-dialog.component';
-import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +23,8 @@ export class HomeComponent implements OnInit {
   name: string;
 
   constructor(private _dataService: DataService,
-              private repoDialog: MatDialog) {
+              private repoDialog: MatDialog,
+              private snackBar: MatSnackBar) {
 
     this.popularRepos = [];
     this.popularLanguages = [];
@@ -80,5 +80,13 @@ export class HomeComponent implements OnInit {
 
   starRepo(repo: Repository) {
     this._dataService.starRepository(repo);
+
+    this.openSnackBar('Yaay! This worked out successfully');
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, null, {
+      duration: 3000,
+    });
   }
 }

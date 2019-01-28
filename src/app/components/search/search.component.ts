@@ -3,7 +3,7 @@ import {Language} from '../../models/language';
 import {DataService} from '../../services/data.service';
 import {Repository} from '../../models/repository';
 import {RepoDialogComponent} from '../repo-dialog/repo-dialog.component';
-import {MatDialog, MatDialogModule} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-search',
@@ -23,7 +23,8 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private _dataService: DataService,
-    private repoDialog: MatDialog
+    private repoDialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {
     this.repositories = [];
   }
@@ -60,6 +61,19 @@ export class SearchComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+    });
+  }
+
+  starRepo(repo: Repository) {
+    this._dataService.starRepository(repo);
+
+    this.openSnackBar('Yaay! This worked out successfully');
+
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, null, {
+      duration: 3000,
     });
   }
 

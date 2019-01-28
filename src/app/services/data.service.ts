@@ -44,18 +44,6 @@ export class DataService {
       );
   }
 
-  starRepository(repo: Repository) {
-    const user_id = localStorage.getItem('gh_user_id');
-
-    this.usersCollection.doc(user_id).update({
-      repo: repo
-    }).then(result => {
-      console.log(result);
-    }, err => {
-      console.log(err);
-    });
-  }
-
   getStarredRepositories() {
 
     const user_id = localStorage.getItem('gh_user_id');
@@ -65,6 +53,54 @@ export class DataService {
     );
 
   }
+
+  starRepository(repo: Repository) {
+    const user_id = localStorage.getItem('gh_user_id');
+
+
+    this.getStarredRepositories().subscribe(result => {
+
+      if (result.data().repo == null) {
+
+        console.log('no repos yet...');
+
+        const arr = [];
+        arr.push(repo);
+
+        this.usersCollection.doc(user_id).update({
+          repo: arr
+        }).then(resp => {
+          console.log(resp);
+        }, err => {
+          console.log(err);
+        });
+
+      } else {
+
+        console.log('already repos');
+
+        const arr = [];
+        for (let i = 0; i < result.data().repo.length; i++) {
+          arr.push(result.data().repo[i]);
+        }
+
+        arr.push(repo);
+        console.log(arr);
+
+        this.usersCollection.doc(user_id).update({
+          repo: arr
+        }).then(resp => {
+          console.log(resp);
+        }, err => {
+          console.log(err);
+        });
+      }
+
+    });
+
+
+  }
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

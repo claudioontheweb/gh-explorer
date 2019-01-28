@@ -5,6 +5,7 @@ import {Repository} from '../../models/repository';
 import {DataService} from '../../services/data.service';
 import {User} from '../../models/user';
 import {RepoDialogComponent} from '../repo-dialog/repo-dialog.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +22,8 @@ export class ProfileComponent implements OnInit {
   constructor(public afAuth: AngularFireAuth,
               private snackBar: MatSnackBar,
               private _dataService: DataService,
-              private repoDialog: MatDialog) {
+              private repoDialog: MatDialog,
+              private router: Router) {
 
     this.starredRepos = [];
   }
@@ -34,6 +36,7 @@ export class ProfileComponent implements OnInit {
   logout() {
     this.afAuth.auth.signOut().then(result => {
       this.openSnackBar('Successfully logged out!');
+      this.router.navigate(['/home']);
     }).catch(error => {
       this.openSnackBar(error);
     });
@@ -50,21 +53,21 @@ export class ProfileComponent implements OnInit {
 
       this.data = result.data();
 
-      this.starredRepos.push(this.data.repo);
+      this.starredRepos = this.data.repo;
 
     });
   }
 
   openRepo(repo: Repository) {
-      const dialogRef = this.repoDialog.open(RepoDialogComponent, {
-        width: '90vw',
-        height: '90%',
-        data: repo
-      });
+    const dialogRef = this.repoDialog.open(RepoDialogComponent, {
+      width: '90vw',
+      height: '90%',
+      data: repo
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

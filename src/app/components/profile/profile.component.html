@@ -2,7 +2,7 @@
 
   <h1>My <span class="accent">Profile</span></h1>
   <br />
-  <button class="logout-btn" mat-icon-button matTooltip="Logout">
+  <button (click)="logout()" class="logout-btn" mat-icon-button matTooltip="Logout">
   <mat-icon>logout</mat-icon>
   </button>
   <br />
@@ -12,8 +12,8 @@
   <h2>Starred repositories:</h2>
   <br />
 
-  <div class="repo-container">
-  <div *ngFor="let repo of starredRepos">
+  <div *ngIf="starredRepos.length >= 1" class="repo-container">
+   <div *ngFor="let repo of starredRepos">
         <mat-card class="repo-item">
           <mat-card-header
             matTooltip="Click to open details!"
@@ -32,6 +32,9 @@
         </mat-card>
       </div>
       </div>
+     <div *ngIf="!starredRepos || starredRepos.length == 0">
+      You didn't star any repositories yet. Explore repos and click on the star icons!
+     </div>
 
 
 </div>
