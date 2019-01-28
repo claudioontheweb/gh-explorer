@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
   config: {
-    apiKey: 'AIzaSyDCseTewJQ0QEWiPDWR5jwkFf7SWb2KVoI',
-    authDomain: 'wichteln-app-b9241.firebaseapp.com',
-    databaseURL: 'https://wichteln-app-b9241.firebaseio.com',
-    projectId: 'wichteln-app-b9241',
-    storageBucket: 'wichteln-app-b9241.appspot.com',
-    messagingSenderId: '586150089617'
+    apiKey: 'AIzaSyB47bVlM9uDEsNGaZ3jikPmQEHUdPdzy58',
+    authDomain: 'gh-explorer.firebaseapp.com',
+    databaseURL: 'https://gh-explorer.firebaseio.com',
+    projectId: 'gh-explorer',
+    storageBucket: 'gh-explorer.appspot.com',
+    messagingSenderId: '1099447843685'
   }
 };
