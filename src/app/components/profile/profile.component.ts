@@ -37,6 +37,7 @@ export class ProfileComponent implements OnInit {
     this.afAuth.auth.signOut().then(result => {
       this.openSnackBar('Successfully logged out!');
       this.router.navigate(['/home']);
+      window.location.reload();
     }).catch(error => {
       this.openSnackBar(error);
     });

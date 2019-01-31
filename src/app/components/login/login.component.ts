@@ -5,8 +5,8 @@ import {User} from '../../models/user';
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {MatDialogRef, MatSnackBar} from '@angular/material';
-import {computeStyle} from '@angular/animations/browser/src/util';
-import {Router} from '@angular/router';
+import {compilePipeFromMetadata} from '@angular/compiler';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -34,12 +34,15 @@ export class LoginComponent implements OnInit {
     verified_email: ''
   };
 
+  repos = [];
+
   loggedIn = false;
 
   constructor(public afAuth: AngularFireAuth,
               private snackBar: MatSnackBar,
               private aF: AngularFirestore,
-              public dialogRef: MatDialogRef<LoginComponent>) {
+              public dialogRef: MatDialogRef<LoginComponent>,
+              private _dataService: DataService) {
 
     this.usersCollection = aF.collection<User>('users');
     this.users = this.usersCollection.valueChanges();
@@ -55,24 +58,32 @@ export class LoginComponent implements OnInit {
 
       localStorage.setItem('gh_user_id', this.newUser.id);
 
+      this.aF.firestore.doc('/users/' + this.newUser.id).get()
+        .then(docSnapshot => {
+          if (docSnapshot.exists) {
+            this.loggedIn = true;
 
-      this.usersCollection.get().subscribe(resp => alert(resp));
+            window.location.reload();
+            this.dialogRef.close();
 
-      // Store user in database
-      this.usersCollection.doc(this.newUser.id).set({
-        given_name: this.newUser.given_name,
-        family_name: this.newUser.family_name,
-        email: this.newUser.email
-      }).then(resp => {
+          } else {
+            this.usersCollection.doc(this.newUser.id).set({
+              uid: this.newUser.id,
+              given_name: this.newUser.given_name,
+              family_name: this.newUser.family_name,
+              email: this.newUser.email
+            }).then(resp => {
 
-        this.loggedIn = true;
+              this.loggedIn = true;
 
-        window.location.reload();
-        this.dialogRef.close();
+              window.location.reload();
+              this.dialogRef.close();
 
-      }).catch(err => {
-        this.openSnackBar('Ooops, Error ' + err.errorCode + ': ' + err.errosMessage);
-      });
+            }).catch(err => {
+              this.openSnackBar('Ooops, Error ' + err.errorCode + ': ' + err.errosMessage);
+            });
+          }
+        });
 
     }).catch(error => {
       this.errorCode = error.code;

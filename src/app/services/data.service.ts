@@ -2,11 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
-import {Language} from '../models/language';
 import {Repository} from '../models/repository';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {User} from '../models/user';
-import GetOptions = firebase.firestore.GetOptions;
 
 @Injectable({
   providedIn: 'root'
@@ -62,8 +60,6 @@ export class DataService {
 
       if (result.data().repo == null) {
 
-        console.log('no repos yet...');
-
         const arr = [];
         arr.push(repo);
 
@@ -76,8 +72,6 @@ export class DataService {
         });
 
       } else {
-
-        console.log('already repos');
 
         const arr = [];
         for (let i = 0; i < result.data().repo.length; i++) {
