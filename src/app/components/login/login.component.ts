@@ -73,7 +73,6 @@ export class LoginComponent implements OnInit {
               family_name: this.newUser.family_name,
               email: this.newUser.email
             }).then(resp => {
-
               this.loggedIn = true;
 
               window.location.reload();

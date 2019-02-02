@@ -43,7 +43,6 @@ export class DataService {
   }
 
   getStarredRepositories() {
-
     const user_id = localStorage.getItem('gh_user_id');
 
     return this.usersCollection.doc(user_id).get().pipe(
@@ -54,7 +53,6 @@ export class DataService {
 
   starRepository(repo: Repository) {
     const user_id = localStorage.getItem('gh_user_id');
-
 
     this.getStarredRepositories().subscribe(result => {
 
@@ -89,10 +87,7 @@ export class DataService {
           console.log(err);
         });
       }
-
     });
-
-
   }
 
 
